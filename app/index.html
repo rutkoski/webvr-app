@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>WebVR App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Experiências de realidade virtual e novas tecnologias do Grupo Plan Marketing Digital. Compatível com Google Cardboard.">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/screen.css">
+</head>
+
+<body>
+    <div class="spinner" style="display:none;">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+
+    <script>
+    /*
+     * Debug parameters.
+     */
+    WebVRConfig = {
+        /**
+         * webvr-polyfill configuration
+         */
+
+        // Forces availability of VR mode.
+        FORCE_ENABLE_VR: true, // Default: false.
+        // Complementary filter coefficient. 0 for accelerometer, 1 for gyro.
+        //K_FILTER: 0.98, // Default: 0.98.
+        // How far into the future to predict during fast motion.
+        //PREDICTION_TIME_S: 0.040, // Default: 0.040 (in seconds).
+        // Flag to disable touch panner. In case you have your own touch controls
+        //TOUCH_PANNER_DISABLED: true, // Default: false.
+        // Enable yaw panning only, disabling roll and pitch. This can be useful for
+        // panoramas with nothing interesting above or below.
+        //YAW_ONLY: true, // Default: false.
+
+        /**
+         * webvr-boilerplate configuration
+         */
+        // Forces distortion in VR mode.
+        //FORCE_DISTORTION: true, // Default: false.
+        // Override the distortion background color.
+        // DISTORTION_BGCOLOR: {x: 1, y: 0, z: 0, w: 1}, // Default: (0,0,0,1).
+        // Prevent distortion from happening.
+        //PREVENT_DISTORTION: true, // Default: false.
+        // Show eye centers for debugging.
+        // SHOW_EYE_CENTERS: true, // Default: false.
+        // Prevent the online DPDB from being fetched.
+        // NO_DPDB_FETCH: true,  // Default: false.
+    };
+    </script>
+    <script src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript">
+    var $spinner = $('.spinner');
+
+    $(window).on('resize', resizeLoader);
+
+    resizeLoader();
+
+    function hideLoader(cb) {
+        $(window).off('resize', resizeLoader);
+        $spinner.fadeOut(cb);
+    }
+
+    function resizeLoader() {
+        $spinner.fadeIn().css({
+            top: ($(window).height() - $spinner.height()) / 2,
+            left: ($(window).width() - $spinner.width()) / 2
+        });
+    }
+    </script>
+    <!-- THIRD PARTY -->
+    <script src="js/lib/three/three.js"></script>
+    <script src="js/lib/three/VREffect.js"></script>
+    <script src="js/lib/three/VRControls.js"></script>
+    <script src="js/lib/three/Projector.js"></script>
+    <script src="js/lib/three/ColladaLoader.js"></script>
+    <script src="js/lib/three/Detector.js"></script>
+    <script src="js/lib/dat.gui.js"></script>
+    <script src="js/lib/SPE.js"></script>
+    <script src="js/lib/webvr-polyfill.js"></script>
+    <script src="js/lib/webvr-manager.js"></script>
+    <script src="js/lib/Tween.js"></script>
+    <script src="js/lib/reticulum.js"></script>
+    <!-- APP -->
+    <script src="js/data.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
